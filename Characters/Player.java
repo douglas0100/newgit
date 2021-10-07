@@ -42,6 +42,26 @@ public class Player extends Character {
 		return this.oldPositionY;
 	}
 
+	@Override
+	public void setLifePlusOrLass(int life) {
+		this.life = this.life + life;
+	}
+
+	@Override
+	public void setAttackPlusOrLass(int attackPower) {
+		this.attackPower = this.attackPower + attackPower;
+	}
+
+	@Override
+	public int getLife() {
+		return this.life;
+	}
+
+	@Override
+	public int getAttackPower() {
+		return this.attackPower;
+	}
+
 
 
 }

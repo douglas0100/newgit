@@ -28,13 +28,21 @@ public class Map {
         .removeCharacter();
     }
 
-    public void setCharacterPosition(Character character) {
+    public void setCharacterPositionOnMap(Character character) {
         removeCharacterOnMap(character);
         addCharacterOnMap(character);
     }
 
     public MapPosition[][] getMapPositions() {
         return this.positions;
+    }
+
+    public Character getCharacterOnMapPosition(int positionX, int positionY) {
+        return this.positions[positionY][positionX].getCharacter();
+    }
+
+    public boolean theresCharacter(int positionX, int positionY){
+        return this.positions[positionY][positionX].theresCharacter();
     }
 
 }

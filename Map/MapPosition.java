@@ -19,6 +19,11 @@ public class MapPosition {
     public boolean theresCharacter(){
         return this.character != null;
     }
+
+    public Character getCharacter(){
+        return this.character;
+    }
+
     
     @Override
     public String toString(){

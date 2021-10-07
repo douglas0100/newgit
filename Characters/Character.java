@@ -19,6 +19,14 @@ public abstract class Character {
     public abstract int getOldCharacterPositionX();
 
     public abstract int getOldCharacterPositionY();
+
+    public abstract int getLife();
+
+    public abstract int getAttackPower();
+
+    public abstract void setLifePlusOrLass(int life);
+
+    public abstract void setAttackPlusOrLass(int attackPower);
     
     public abstract void setCharacterPosition(int positionX, int positionY);
 

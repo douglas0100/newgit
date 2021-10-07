@@ -1,7 +1,9 @@
 package Characters;
 
+import java.util.Random;
+
 public class Player extends Character {
-	
+
 	public Player() {
 		this.life = 25;
 		this.attackPower = 1;
@@ -60,6 +62,13 @@ public class Player extends Character {
 	@Override
 	public int getAttackPower() {
 		return this.attackPower;
+	}
+
+	@Override
+	public void setDiferentePosition() {
+		this.aleat = new Random();
+		this.positionX = aleat.nextInt(16) + 2;
+		this.positionY = aleat.nextInt(16) + 2;
 	}
 
 

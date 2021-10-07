@@ -34,7 +34,6 @@ public class MapPosition {
         }
         
     }
-    //Método para garantir que os Characters não spawnem no mesmo lugar
 
     
     

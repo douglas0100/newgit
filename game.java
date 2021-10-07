@@ -23,7 +23,7 @@ public class game {
         characterManager.createBosses(1);
         characterManager.createWeapons(1);
 
-        do  {
+        while (characterManager.getPlayerLife() >= 0) {
 
             System.out.println("===========================================");
             System.out.format("Hero HP: %d || Hero Damage: %d || Score: 25 \n",
@@ -35,11 +35,11 @@ public class game {
             System.out.println(" [A] - to move left.  [D] - to move right.");
             System.out.println(" [W] - to move up.    [S] - to move down.");
             System.out.println(" [SPACE] - to attack. [X] - to exit.");
+            System.out.println("===========================================");
 
             comand = input.next().charAt(0);
             characterManager.setPlayerPosition(comand);
-
-        } while (characterManager.getPlayerLife() >= 0);
+        } 
 
     }
 

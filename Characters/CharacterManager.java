@@ -2,7 +2,7 @@ package Characters;
 
 import java.util.LinkedList;
 import java.util.List;
-
+import java.util.Random;
 import Characters.Enemys.Boss;
 import Characters.Enemys.Enemy;
 import Characters.Enemys.Monster;
@@ -12,6 +12,8 @@ import Map.Map;
 import Map.MapPosition;
 
 public class CharacterManager {
+
+    public static Random aleat;
 
     public List<Character> monsters;
     public List<Character> potions;
@@ -64,7 +66,7 @@ public class CharacterManager {
                 newPositionY = this.player.getCharacterPositionY() + 1;
             break;
         }
-        if (isCharacterOnMap(newPositionX, newPositionY) && !theresEnemyOnNextPosition(newPositionX, newPositionY)) {
+        if (isValidatedPosition(newPositionX, newPositionY) && !theresEnemyOnNextPosition(newPositionX, newPositionY)) {
             if(theresPotionOnNextPosition(newPositionX, newPositionY)){
                 this.player.setLifePlusOrLass(6);
             }
@@ -96,6 +98,11 @@ public class CharacterManager {
     public void createMonstersAndAddOnMap(int enemysNumber){
         for(int i = 0; i < enemysNumber; i++) {
             Character character = new Monster();
+            int positionX = character.getCharacterPositionX();
+            int positionY = character.getCharacterPositionY();
+            if(this.map.theresCharacter(positionX, positionY)){
+                setCharacterToDiferentPosition(character);
+            }
             this.monsters.add(character);
             this.map.addCharacterOnMap(character);
         }
@@ -104,6 +111,11 @@ public class CharacterManager {
     public void createPotionsAndAddOnMap(int potionsNumber) {
         for(int i = 0; i < potionsNumber; i++) {
             Character character = new Potion();
+            int positionX = character.getCharacterPositionX();
+            int positionY = character.getCharacterPositionY();
+            if(this.map.theresCharacter(positionX, positionY)){
+                setCharacterToDiferentPosition(character);
+            }
             this.potions.add(character);
             this.map.addCharacterOnMap(character);
         }
@@ -112,6 +124,11 @@ public class CharacterManager {
     public void createBossesAndAddOnMap(int bossesNumber) {
         for(int i = 0; i < bossesNumber; i++) {
             Character character = new Boss();
+            int positionX = character.getCharacterPositionX();
+            int positionY = character.getCharacterPositionY();
+            if(this.map.theresCharacter(positionX, positionY)){
+                setCharacterToDiferentPosition(character);
+            }
             this.bosses.add(character);
             this.map.addCharacterOnMap(character);
         }
@@ -120,6 +137,11 @@ public class CharacterManager {
     public void createWeaponsAndAddOnMap(int weaponsNumber) {
         for(int i = 0; i < weaponsNumber; i++) {
             Character character = new Weapon();
+            int positionX = character.getCharacterPositionX();
+            int positionY = character.getCharacterPositionY();
+            if(this.map.theresCharacter(positionX, positionY)){
+                setCharacterToDiferentPosition(character);
+            }
             this.weapons.add(character);
             this.map.addCharacterOnMap(character);
         }
@@ -133,7 +155,7 @@ public class CharacterManager {
         return this.player.getAttackPower();
     }
 
-    public boolean isCharacterOnMap(int positionX, int positionY) {
+    public boolean isValidatedPosition(int positionX, int positionY) {
         return positionX >= 0 && positionX < 20 && positionY >= 0 && positionY < 20;
     }
 
@@ -141,6 +163,15 @@ public class CharacterManager {
         return this.map.getMapPositions();
     }
 
+    public void setCharacterToDiferentPosition(Character character){
+        int positionX = character.getCharacterPositionX();
+        int positionY = character.getCharacterPositionY();
+        while(this.map.theresCharacter(positionX, positionY)){
+            character.setDiferentePosition();
+            positionX = character.getCharacterPositionX();
+            positionY = character.getCharacterPositionY();
+        }
+    }
 
 
    

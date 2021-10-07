@@ -36,4 +36,11 @@ public class Monster extends Enemy {
 		return this.attackPower;
 	}
 
+	@Override
+	public void setDiferentePosition() {
+		this.aleat = new Random();
+		this.positionX = aleat.nextInt(16) + 2;
+		this.positionY = aleat.nextInt(16) + 2;
+	}
+
 }

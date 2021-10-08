@@ -18,6 +18,14 @@ public class Boss extends Enemy {
 	}
 
 	@Override
+    public void setCharacterPosition(int positionX, int positionY) {
+		this.oldPositionX = this.positionX;
+		this.oldPositionY = this.positionY;
+    	this.positionX = positionX;
+    	this.positionY = positionY;
+    }
+
+	@Override
 	public void setAttackPlusOrLass(int attackPower) {
 		this.attackPower = this.attackPower + attackPower;
 	}
@@ -37,11 +45,15 @@ public class Boss extends Enemy {
 		return this.attackPower;
 	}
 
+
 	@Override
-	public void setDiferentePosition() {
-		this.aleat = new Random();
-		this.positionX = aleat.nextInt(16) + 2;
-		this.positionY = aleat.nextInt(16) + 2;
+	public int getOldCharacterPositionX() {
+		return this.oldPositionX;
+	}
+
+	@Override
+	public int getOldCharacterPositionY() {
+		return this.oldPositionY;
 	}
 
 }

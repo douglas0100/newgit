@@ -30,8 +30,6 @@ public abstract class Character {
     
     public abstract void setCharacterPosition(int positionX, int positionY);
 
-    public abstract void setDiferentePosition();
-
     public abstract String toString();
 
 }

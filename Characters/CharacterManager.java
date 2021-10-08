@@ -15,10 +15,8 @@ public class CharacterManager {
 
     public static Random aleat;
 
-    public List<Character> monsters;
-    public List<Character> potions;
-    public List<Character> bosses;
-    public List<Character> weapons;
+    public List<Character> characters;
+
 
     public Map map;
     public Character player;
@@ -27,26 +25,7 @@ public class CharacterManager {
         this.player = new Player();
         this.map = map;
         this.map.addCharacterOnMap(player);
-    }
-
-    public void createMonsters(int monstersNumber) {
-        this.monsters = new LinkedList<>();
-        createMonstersAndAddOnMap(monstersNumber);
-    }
-
-    public void createPotions(int potionsNumber){
-        this.potions = new LinkedList<>();
-        createPotionsAndAddOnMap(potionsNumber);
-    }
-
-    public void createBosses(int bossesNumber){
-        this.bosses = new LinkedList<>();
-        createBossesAndAddOnMap(bossesNumber);
-    }
-
-    public void createWeapons(int weaponsNumber){
-        this.weapons = new LinkedList<>();
-        createWeaponsAndAddOnMap(weaponsNumber);
+        this.characters = new LinkedList<>();
     }
 
     public void setPlayerPosition(char comand) {
@@ -79,12 +58,6 @@ public class CharacterManager {
         setEnemysPosition();
     }
 
-    public void setEnemysPosition() {
-        setBossesPosition();
-        setMonstersPosition();
-    }
-
-
     public boolean theresPotionOnNextPosition(int positionX, int positionY){
         return this.map.theresCharacter(positionX, positionY) &&
         this.map.getCharacterOnMapPosition(positionX, positionY) instanceof Potion;
@@ -95,63 +68,31 @@ public class CharacterManager {
         this.map.getCharacterOnMapPosition(positionX, positionY) instanceof Enemy;
     }
 
-    public void createMonstersAndAddOnMap(int enemysNumber){
+    public void createMonsters(int enemysNumber){
         for(int i = 0; i < enemysNumber; i++) {
             Character character = new Monster();
-            int positionX = character.getCharacterPositionX();
-            int positionY = character.getCharacterPositionY();
-            while(this.map.theresCharacter(positionX, positionY)){
-                positionX = creatNewAleatoryPosition();
-                positionY = creatNewAleatoryPosition();
-                character.setCharacterPosition(positionX, positionY);
-            }
-            this.monsters.add(character);
-            this.map.addCharacterOnMap(character);
+            addCharacterOnMap(character);
         }
     }
 
-    public void createPotionsAndAddOnMap(int potionsNumber) {
+    public void createPotions(int potionsNumber) {
         for(int i = 0; i < potionsNumber; i++) {
             Character character = new Potion();
-            int positionX = character.getCharacterPositionX();
-            int positionY = character.getCharacterPositionY();
-            while(this.map.theresCharacter(positionX, positionY)){
-                positionX = creatNewAleatoryPosition();
-                positionY = creatNewAleatoryPosition();
-                character.setCharacterPosition(positionX, positionY);
-            }
-            this.potions.add(character);
-            this.map.addCharacterOnMap(character);
+            addCharacterOnMap(character);
         }
     }
 
-    public void createBossesAndAddOnMap(int bossesNumber) {
+    public void createBosses(int bossesNumber) {
         for(int i = 0; i < bossesNumber; i++) {
             Character character = new Boss();
-            int positionX = character.getCharacterPositionX();
-            int positionY = character.getCharacterPositionY();
-            while(this.map.theresCharacter(positionX, positionY)){
-                positionX = creatNewAleatoryPosition();
-                positionY = creatNewAleatoryPosition();
-                character.setCharacterPosition(positionX, positionY);
-            }
-            this.bosses.add(character);
-            this.map.addCharacterOnMap(character);
+            addCharacterOnMap(character);
         }
     }
 
-    public void createWeaponsAndAddOnMap(int weaponsNumber) {
+    public void createWeapons(int weaponsNumber) {
         for(int i = 0; i < weaponsNumber; i++) {
             Character character = new Weapon();
-            int positionX = character.getCharacterPositionX();
-            int positionY = character.getCharacterPositionY();
-            while(this.map.theresCharacter(positionX, positionY)){
-                positionX = creatNewAleatoryPosition();
-                positionY = creatNewAleatoryPosition();
-                character.setCharacterPosition(positionX, positionY);
-            }
-            this.weapons.add(character);
-            this.map.addCharacterOnMap(character);
+            addCharacterOnMap(character);
         }
     }
 
@@ -183,39 +124,41 @@ public class CharacterManager {
         return position;
     }
    
-    public void setMonstersPosition(){
-        for(int i = 0; i < this.monsters.size(); i++) {
-            int positionX = this.monsters.get(i).getCharacterPositionX();
-            int positionY = this.monsters.get(i).getCharacterPositionY();
-            while(isValidatedPosition(positionX, positionY) && this.map.theresCharacter(positionX, positionY)){
-                positionX = this.monsters.get(i).getCharacterPositionX();
-                positionY = this.monsters.get(i).getCharacterPositionY();
-                positionX = creatNewAditionalPosition(positionX);
-                positionY = creatNewAditionalPosition(positionY);
-            }
-            if(isValidatedPosition(positionX, positionY)){
-                this.monsters.get(i).setCharacterPosition(positionX, positionY);
-                this.map.setCharacterPositionOnMap(this.monsters.get(i));
+
+    public void setEnemysPosition(){
+        for(int i = 0; i < this.characters.size(); i++) {
+            this.characters.get(i);
+            if(this.characters.get(i) instanceof Enemy){
+                setCharacterPosition(this.characters.get(i));
             }
         }
     }
 
-    public void setBossesPosition(){
-        for(int i = 0; i < this.bosses.size(); i++) {
-            int positionX = this.bosses.get(i).getCharacterPositionX();
-            int positionY = this.bosses.get(i).getCharacterPositionY();
+    public void setCharacterPosition(Character character) {
+            int positionX = character.getCharacterPositionX();
+            int positionY = character.getCharacterPositionY();
             while(isValidatedPosition(positionX, positionY) && this.map.theresCharacter(positionX, positionY)){
-                positionX = this.bosses.get(i).getCharacterPositionX();
-                positionY = this.bosses.get(i).getCharacterPositionY();
+                positionX = character.getCharacterPositionX();
+                positionY = character.getCharacterPositionY();
                 positionX = creatNewAditionalPosition(positionX);
                 positionY = creatNewAditionalPosition(positionY);
             }
             if(isValidatedPosition(positionX, positionY)){
-                this.bosses.get(i).setCharacterPosition(positionX, positionY);
-                this.map.setCharacterPositionOnMap(this.bosses.get(i));
+                character.setCharacterPosition(positionX, positionY);
+                this.map.setCharacterPositionOnMap(character);
             }
-           
-        }
+    }
+
+    public void addCharacterOnMap(Character character) {
+        int positionX = character.getCharacterPositionX();
+            int positionY = character.getCharacterPositionY();
+            while(this.map.theresCharacter(positionX, positionY)){
+                positionX = creatNewAleatoryPosition();
+                positionY = creatNewAleatoryPosition();
+                character.setCharacterPosition(positionX, positionY);
+            }
+            this.characters.add(character);
+            this.map.addCharacterOnMap(character);
     }
 
 }

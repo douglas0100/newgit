@@ -23,7 +23,7 @@ public class game {
         characterManager.createBosses(1);
         characterManager.createWeapons(1);
 
-        while (characterManager.getPlayerLife() >= 0) {
+        while (characterManager.getPlayerLife() >= 0 && !characterManager.heroAreAtTheDoor()) {
 
             System.out.println("===========================================");
             System.out.format("Hero HP: %d || Hero Damage: %d || Score: 25 \n",

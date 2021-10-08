@@ -187,7 +187,7 @@ public class CharacterManager {
         for(int i = 0; i < this.monsters.size(); i++) {
             int positionX = this.monsters.get(i).getCharacterPositionX();
             int positionY = this.monsters.get(i).getCharacterPositionY();
-            while(this.map.theresCharacter(positionX, positionY) && isValidatedPosition(positionX, positionY)){
+            while(isValidatedPosition(positionX, positionY) && this.map.theresCharacter(positionX, positionY)){
                 positionX = this.monsters.get(i).getCharacterPositionX();
                 positionY = this.monsters.get(i).getCharacterPositionY();
                 positionX = creatNewAditionalPosition(positionX);
@@ -204,7 +204,7 @@ public class CharacterManager {
         for(int i = 0; i < this.bosses.size(); i++) {
             int positionX = this.bosses.get(i).getCharacterPositionX();
             int positionY = this.bosses.get(i).getCharacterPositionY();
-            while(this.map.theresCharacter(positionX, positionY) && isValidatedPosition(positionX, positionY)){
+            while(isValidatedPosition(positionX, positionY) && this.map.theresCharacter(positionX, positionY)){
                 positionX = this.bosses.get(i).getCharacterPositionX();
                 positionY = this.bosses.get(i).getCharacterPositionY();
                 positionX = creatNewAditionalPosition(positionX);

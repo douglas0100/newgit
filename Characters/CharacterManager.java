@@ -48,13 +48,12 @@ public class CharacterManager {
             if (theresPotionOnNextPosition(newPositionX, newPositionY)) {
                 this.player.setLifePlusOrLass(6);
             }
-            if(theresWeaponOnNextPosition(newPositionX, newPositionY)) {
+            if (theresWeaponOnNextPosition(newPositionX, newPositionY)) {
                 this.player.setAttackPlusOrLass(1);
             }
             this.player.setLifePlusOrLass(-1);
             this.player.setCharacterPosition(newPositionX, newPositionY);
             this.map.setCharacterPositionOnMap(player);
-
         }
         setEnemysPosition();
     }
@@ -167,8 +166,7 @@ public class CharacterManager {
     }
 
     public boolean heroAreAtTheDoor() {
-        return this.player.getCharacterPositionX() == 20
-            && this.player.getCharacterPositionY() == 20;
+        return this.player.getCharacterPositionX() == 19 && this.player.getCharacterPositionY() == 19;
     }
 
 }

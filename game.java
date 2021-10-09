@@ -24,26 +24,16 @@ public class game {
         characterManager.createWeapons(1);
 
         while (characterManager.getPlayerLife() >= 0 && !characterManager.heroAreAtTheDoor()) {
-
-            System.out.println("===========================================");
-            System.out.format("Hero HP: %d || Hero Damage: %d || Score: 25 \n",
-            characterManager.getPlayerLife(), characterManager.getPlayerAttack());
-            System.out.println("===========================================");
-            imprimeMapa(map.getMapPositions());
-            System.out.println("===========================================");
-
-            System.out.println(" [A] - to move left.  [D] - to move right.");
-            System.out.println(" [W] - to move up.    [S] - to move down.");
-            System.out.println(" [SPACE] - to attack. [X] - to exit.");
-            System.out.println("===========================================");
+            printAll(characterManager, map);
 
             comand = input.next().charAt(0);
             characterManager.setPlayerPosition(comand);
         } 
+        printAll(characterManager, map);
 
     }
 
-    public static void imprimeMapa(MapPosition[][] map) {
+    public static void printMap(MapPosition[][] map) {
         for (int i = 0; i < map.length; i = i + 1) {
             System.out.print("  ");
             for (int j = 0; j < map.length; j = j + 1) {
@@ -51,6 +41,20 @@ public class game {
             }
             System.out.println();
         }
+    }
+
+    public static void printAll(CharacterManager characterManager, Map map) {
+            System.out.println("===========================================");
+            System.out.format("Hero HP: %d || Hero Damage: %d || Score: 25 \n",
+            characterManager.getPlayerLife(), characterManager.getPlayerAttack());
+            System.out.println("===========================================");
+            printMap(map.getMapPositions());
+            System.out.println("===========================================");
+
+            System.out.println(" [A] - to move left.  [D] - to move right.");
+            System.out.println(" [W] - to move up.    [S] - to move down.");
+            System.out.println(" [SPACE] - to attack. [X] - to exit.");
+            System.out.println("===========================================");
     }
 
 }
